@@ -34,6 +34,11 @@ notesCogUserPoolClient:
       - openid
     AllowedOAuthFlows: 
       - implicit
+    ExplicitAuthFlows: 
+      - ALLOW_ADMIN_USER_PASSWORD_AUTH
+      - ALLOW_REFRESH_TOKEN_AUTH
+      - ALLOW_CUSTOM_AUTH
+      - ALLOW_USER_SRP_AUTH
     CallbackURLs:
       - 'http://localhost:3000' 
 
@@ -43,14 +48,3 @@ notesCogUserPoolDomain:
   Properties:
     Domain: notes-domain-${self:provider.stage}
     UserPoolId: !Ref notesCogUserPool
-
-
-
-
-# # Application parameter
-# userPoolIdParameter:
-#   Type: AWS::SSM::Parameter
-#   Properties:
-#     Name: /notes/${self:provider.stage}/userPoolId
-#     Type: String
-#     Value: !GetAtt notesCogUserPool.Arn
